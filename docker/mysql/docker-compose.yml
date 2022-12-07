@@ -1,0 +1,21 @@
+# Có nhiều version của docker-compose, ở đây mình chọn version 3. Cũng còn tuỳ vào dự án nên bạn tuỳ biến version nhé, lưu ý mỗi version sẽ có cú pháp khác nhau.
+version: '3'
+# Tạo một service với tên là test-db để lưu trữ MySQL trên container thay vì sử dụng dưới local
+services:
+  ecommerce-db:
+    image: mysql
+    container_name: ecommerce-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ecommercedb
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: password
+      
+volumes:
+  db_data:

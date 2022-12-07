@@ -3,12 +3,10 @@ package com.example.tiki.controller;
 import com.example.tiki.dto.ProductDto;
 //import com.example.tiki.kafka.KafkaProductSender;
 import com.example.tiki.kafka.KafkaProductSender;
-import com.example.tiki.property.AppProperty;
-import com.example.tiki.property.MyProperties;
+import com.example.tiki.property.AppProperties;
 import com.example.tiki.service.ProductService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,17 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 public class ProductController {
 
-    @Autowired
-    MyProperties myProperties;
 
     @Autowired
-    AppProperty appProperty;
-
-//    @Value(value = "${my.username}")
-//    String value;
-
-//    @Value(value = "${properties}")
-//    String value1;
+    AppProperties appProperty;
 
     private final ProductService productService;
 
@@ -39,11 +29,8 @@ public class ProductController {
 
     @GetMapping("/consul")
     public String checkConsul(){
-
-       log.info("Properties username: {}", myProperties.getUsername());
-       log.info("value username: {}", appProperty.getUsername());
-
-        return myProperties.getUsername();
+        log.info("value username: {}", appProperty.getUsername());
+        return appProperty.getUsername();
     }
 
     @GetMapping("/notification")
