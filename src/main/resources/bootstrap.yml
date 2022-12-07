@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        fail-fast: true
+        #        prefixes: config
+        #        defaultContext: keyvalue
+        #        profileSeparator: '::'
+        watch:
+          enabled: true
+#        data-key: tiki.properties
+        format: YAML
